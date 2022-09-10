@@ -1,0 +1,151 @@
+body
+{
+    background-color: rgba(0, 0, 0, 0.804);
+    color: #fff;
+}
+*
+{
+    box-sizing: border-box;
+}
+.crud
+{
+    width: 80%;
+
+    margin: auto;
+}
+.crud h1 ,.crud h4
+{
+    text-align: center;
+}
+input
+{
+    width: 100%;
+    border-radius: 8px;
+    margin: 10px 0;
+    border:none;
+    padding: 7px 0;
+    text-align: center;
+    background:rgb(27, 25, 25);
+    font-size: 19px;
+    color: white;
+}
+input::placeholder
+{
+    color: rgba(255, 255, 255, 0.496);
+}
+
+input:focus
+{
+        background:rgba(0, 0, 0, 0.683);
+    transform: scale(102%);
+        outline:none;
+}
+.price input
+{
+width: calc(100%/5);
+}
+.total
+{
+    background-color: rgb(115, 0, 0);
+    border-radius: 7px;
+    padding: 10px;
+}
+.total::before
+{
+    content: "Total :";
+}
+button
+{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    font-size:120%;
+    background-color: rgba(75, 0, 72, 0.964);
+    font-size: 140%;
+    transition: 0.6s letter-spacing , 0.6s border-radius;
+}
+button:hover
+{    
+    background-color: rgba(52, 2, 48, 0.964);
+    letter-spacing: 2px;
+    border-radius: 17px;
+}
+.buttons-search
+{
+    display: flex;
+    justify-content: space-between;
+}
+.buttons-search button
+{
+    width: calc(98%/2);
+    margin: 20px 0 20px 0;
+}
+
+.crud table
+{
+    width: 100%;
+    text-align: center;
+
+}
+
+.crud table thead tr
+{
+    border-top: 1px solid rgba(75, 0, 72, 0.964);
+    border-bottom: 1px solid rgba(75, 0, 72, 0.964);
+}
+.crud table thead tr th
+{
+    padding: 20px 0;
+    text-transform: capitalize;
+}
+.crud table tbody tr
+{
+    border-bottom: 1px solid rgba(187, 16, 181, 0.382);
+}
+.crud table tbody td
+
+{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+#tbody button
+{
+    width: 50%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    font-size:120%;
+    border-radius: 18px;
+    background-color: rgba(103, 1, 99, 0.964);
+    font-size: 140%;
+    transition: none;
+}
+
+#tbody button:hover
+{    
+    background-color: rgba(52, 2, 48, 0.964);
+    letter-spacing: 0px;
+}
+.changesUpdates
+{
+    background-color: rgba(113, 101, 101, 0.593);
+    color: rgb(255, 255, 255);
+}
+.changesUpdates:disabled
+{
+    background-color: rgba(0, 0, 0, 0.871);
+}
+.changesUpdates:focus-visible
+{
+    background-color: rgba(22, 18, 18, 0.593);
+}
+i
+{
+    cursor: pointer;
+}

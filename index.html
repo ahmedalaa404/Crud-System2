@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <!-- name of website -->
+    <link href="css/all.min.css" rel="stylesheet">
+    <!--calling file of fontawsome  -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- calling file of css boostrap -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- calling file of style by developer -->
+
+</head>
+<body>
+<div class="crud">
+
+    <div class="head">  
+          <h1>Crud</h1>
+          <h4>Crud mangment system </h4>
+        </div>
+    <div class="inputes">
+        <input type="text" placeholder="Tile" id="title" class="titleInputs">
+        <div class="price">
+            <input onkeyup="getTotal(price,taxes,ads,discount)" onclick="getTotal(price,taxes,ads,discount)" type="number" placeholder="price" id="price" class="price">
+            <input onkeyup="getTotal(price,taxes,ads,discount)" type="number" placeholder="taxes" id="taxes" class="taxes">
+
+            <input onkeyup="getTotal(price,taxes,ads,discount)"  type="number" placeholder="ads" id="ads" class="ads">
+
+            <input onkeyup="getTotal(price,taxes,ads,discount)"  type="number" placeholder="discount" id="discount" class="discount">
+            <small id="total" class="total" id="total"></small>
+        </div>
+        <input type="number" class="Count" id="count" placeholder="counter">
+        <input type="text" class="Category" id="Category" placeholder="Category">
+        <button id="creat" onclick="addProduct()">Creat</button>
+    </div>
+
+    <div class="outputs">
+        <div class="searchBlock">
+            <input type="text" id="search" class="search" placeholder="search">
+            <div class="buttons-search">
+                <button id="searchCategory" class="searchCategory">Search by Category</button>
+                <button id="searchTitle" class="searchTitle" >Search by Title</button>
+            </div>
+        </div>
+        <div id="deletAll">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                   <th>Id</th> 
+                   <th>Tile</th> 
+                   <th>Price</th> 
+                   <th>taxes</th> 
+                   <th>ads</th> 
+                   <th>Discount</th> 
+                   <th>Total</th> 
+                   <th>Category</th> 
+                   <th>Update</th> 
+                   <th>Delte</th> 
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="js/action.js"></script>
+</body>
+</html>
