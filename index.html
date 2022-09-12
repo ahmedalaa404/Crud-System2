@@ -39,10 +39,10 @@
 
     <div class="outputs">
         <div class="searchBlock">
-            <input type="text" id="search" class="search" placeholder="search">
+            <input type="text" id="search" class="search" oninput="searchData(this.value)" placeholder="search">
             <div class="buttons-search">
-                <button id="searchCategory" class="searchCategory">Search by Category</button>
-                <button id="searchTitle" class="searchTitle" >Search by Title</button>
+                <button onclick="getMode(this.id)" id="searchCategory" class="searchCategory">Search by Category</button>
+                <button onclick="getMode(this.id)" id="searchTitle" class="searchTitle" >Search by Title</button>
             </div>
         </div>
         <div id="deletAll">

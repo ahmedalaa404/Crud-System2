@@ -8,7 +8,8 @@ let count=document.getElementById("count");
 let Category=document.getElementById("Category");
 let creat=document.getElementById("creat");
 let search=document.getElementById("search");
-
+let btnSearchCategory=document.getElementById("searchCategory");
+let btnSearchTitle=document.getElementById("searchTitle");
 
 
 // variable of js to store Data
@@ -19,13 +20,20 @@ let StoreChange;
 // number save index of change for update
 let numberIndexChanges;
 
+
+// mode search  
+let modeSearch='title';
+
+
+
+
 //  function to start to retive the data from local storage 
 (function()
     {
         if(localStorage.getItem("product")!=null)
         {
             storeData=JSON.parse(localStorage.getItem("product"));
-            displayDate();
+            displayDate(storeData)
             displayRemoveData();
         }   
         else
@@ -132,7 +140,7 @@ let container=
     localStorage.setItem('product',JSON.stringify(storeData));
     // TO SAVE data in local storage
     clear();
-    displayDate();
+    displayDate(storeData)
     getTotal(price.value,taxes.value,ads.value,discount.value);
     displayRemoveData();
 }
@@ -150,23 +158,23 @@ function clear()
     Category.value="";
 }
 
-function displayDate()
+function displayDate(dataShow)
 {
     concat='';
 
-    for(let i=0;i<storeData.length;i++)
+    for(let i=0;i<dataShow.length;i++)
     {
         
         concat +=`           
          <tr>
             <td>${i}</td>
-            <td>${storeData[i].title}</td>
-            <td>${storeData[i].price}</td>
-            <td>${storeData[i].taxes}</td>
-            <td>${storeData[i].ads}</td>
-            <td>${storeData[i].discount}</td>
-            <td>${storeData[i].total}</td>
-            <td>${storeData[i].Category}</td>
+            <td>${dataShow[i].title}</td>
+            <td>${dataShow[i].price}</td>
+            <td>${dataShow[i].taxes}</td>
+            <td>${dataShow[i].ads}</td>
+            <td>${dataShow[i].discount}</td>
+            <td>${dataShow[i].total}</td>
+            <td>${dataShow[i].Category}</td>
             <td><button onclick="Update(${i})">Update</button></td>
             <td><button onclick="removeItem(${i})">delete</button></td>
         </tr>` ; 
@@ -193,7 +201,7 @@ function removeStorage()
     localStorage.removeItem('product');
     storeData=[];
     displayRemoveData()
-    displayDate();
+    displayDate(storeData)
 }
 
 
@@ -205,7 +213,7 @@ function removeItem(x)
   storeData.splice(x,1);  
 localStorage.product=JSON.stringify(storeData)
 displayRemoveData()
-displayDate();
+displayDate(storeData)
 };
 
 // function to chech data and use it in to make many data in the time  
@@ -230,11 +238,11 @@ let changesData=`
 <tr>
 <td><input class="changesUpdates" id="" type="text" value="${x}"disabled></td> 
 <td><input  class="changesUpdates" id="changetitle" type="text" value="${StoreChange.title}"></td> 
-<td><input class="changesUpdates" id="changeprice" type="text" oninput="UpdateTotal()" value="${StoreChange.price}"></td>  
-<td><input  class="changesUpdates" id="changetaxes" type="text"oninput="UpdateTotal()"  value="${StoreChange.taxes}"></td> 
-<td><input  class="changesUpdates" id="changeads" type="text"  oninput="UpdateTotal()" value="${StoreChange.ads}"></td> 
-<td><input class="changesUpdates" id="changediscount" type="text" oninput="UpdateTotal()"    value="${StoreChange.discount}"></td> 
-<td><input class="changesUpdates" id="changeTotal"  type="text" value="${StoreChange.total}" readonly></td>  
+<td><input class="changesUpdates" id="changeprice" type="number" oninput="UpdateTotal()" value="${StoreChange.price}"></td>  
+<td><input  class="changesUpdates" id="changetaxes" type="number"oninput="UpdateTotal()"  value="${StoreChange.taxes}"></td> 
+<td><input  class="changesUpdates" id="changeads" type="number"  oninput="UpdateTotal()" value="${StoreChange.ads}"></td> 
+<td><input class="changesUpdates" id="changediscount" type="number" oninput="UpdateTotal()"    value="${StoreChange.discount}"></td> 
+<td><input class="changesUpdates" id="changeTotal"  type="number" value="${StoreChange.total}" readonly></td>  
 <td><input class="changesUpdates" id="changecategory" type="text" value="${StoreChange.Category}"></td> 
 <td colspan="2"><i class="fs-1 text-primary fa-regular fa-circle-check" onclick="test()"> </i></td> 
 </tr>
@@ -298,7 +306,7 @@ function test()
         }
     }
     localStorage.setItem("product",JSON.stringify(storeData));
-    displayDate();
+    displayDate(storeData)
 }
 
 function UpdateTotal()
@@ -309,64 +317,48 @@ function UpdateTotal()
 
 
 
+// function to make a search 
+function getMode(id)
+{
+if(id=="searchCategory")
+{
+modeSearch='Category';
+search.placeholder="searchCategory";
+}
+if(id=="searchTitle")
+{
+    modeSearch='title';
+    search.placeholder="searchTitle";
+}
+search.focus();
+console.log(modeSearch);
+}
 
+function searchData(value)
+{  
+    let storeSearch=[];
+    if(modeSearch=="title")
+    {
+        for(let i=0 ; i<storeData.length;i++)
+        {
+            if(storeData[i].title.toLowerCase().includes(value.toLowerCase())==true)
+            {
+                storeSearch.push(storeData[i]);
+            }
+        }
+    }
+    if(modeSearch=="Category")
+    {
+        for(let i=0 ; i<storeData.length;i++)
+        {
+            if(storeData[i].Category.toLowerCase().includes(value.toLowerCase())==true)
+            {
+                storeSearch.push(storeData[i]);
+            }
+        }
+    }
 
-
-
-
-
-
-// function used to makecompare for data and make latest update
-// function compareChanges()
-// {
-//     console.log("asas")    ;
-//     // input show to make changes in that 
-// // let changetitle=document.getElementById("changetitle");
-// // let changeprice=document.getElementById("changeprice");
-// // let changetaxes=document.getElementById("changetaxes");
-// // let changeads=document.getElementById("changeads");
-// // let changediscount=document.getElementById("changediscount");
-// // let changecategory=document.getElementById("changecategory");
-
-
-// //     if(StoreChange.title!=changetitle.value)
-// //     {
-// //         storeData[numberIndexChanges].title=changetitle.value;
-// //     }
-
-
-// //     if(StoreChange.price!=changeprice.value)
-// //     {
-// //         if(validPrice(changeprice.value)==true)
-// //         {
-// //             storeData[numberIndexChanges].price=changeprice.value; 
-// //         }
- 
-// //     }
-
-
-// //     if(StoreChange.taxes!=changetaxes.value)
-// //     {
-// //         storeData[numberIndexChanges].taxes=changetaxes.value;
-// //     }
-
-// //     if(StoreChange.ads!=changeads.value)
-// //     {
-// //         storeData[numberIndexChanges].ads=changeads.value;  
-// //     }
-
-
-// //     if(StoreChange.discount!=changediscount.value)
-// //     {
-// //         storeData[numberIndexChanges].discount=changediscount.value;
-// //     }
-// //     if(StoreChange.Category!=changecategory.value)
-// //     {
-// //         storeData[numberIndexChanges].Category=changecategory.value;  
-// //     }
-
-// }
-// function Update();
-// function search();
+    displayDate(storeSearch);
+}
 
 
